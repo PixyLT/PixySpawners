@@ -1,0 +1,4 @@
+require-silktouch: true
+can-remove-without-silktouch: false
+spawner-can-be-destroyed: false
+spawner-drop-on-explosion: true
