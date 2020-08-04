@@ -1,3 +1,19 @@
 name: PixySpawners
-version: 0.8.0
+version: 0.8.1
 main: com.pixylt.pixyspawners.PixySpawners
+api-version: 1.16
+commands:
+  pixyspawners:
+    description: Main PixySpawners command
+    usage: "Usage: /pixyspawners"
+  spawners:
+    aliases: spawner
+    description: Spawners command
+    usage: "Usage: /spawners"
+permissions:
+  pixyspawners.*:
+    default: op
+    children:
+      pixyspawners.help: true
+  pixyspawners.help:
+    default: true

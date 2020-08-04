@@ -20,8 +20,6 @@ public class InventoryClickListener implements Listener {
     public void OnInventoryClick(InventoryClickEvent e){
         Player p = (Player) e.getWhoClicked();
 
-        p.sendMessage("Title = " + e.getView().getTitle() + " " + e.getSlot());
-
         if(e.getView().getTitle().equals("Page 1 | Select spawner type")){
             e.setCancelled(true);
             EntityType et = EntityType.PIG;

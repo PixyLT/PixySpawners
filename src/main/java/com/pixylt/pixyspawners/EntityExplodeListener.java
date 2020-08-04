@@ -48,14 +48,12 @@ public class EntityExplodeListener implements Listener {
             int y = block.getY();
             int z = block.getZ();
             String cfg = String.valueOf(x) + "-" + String.valueOf(y) + "-" + String.valueOf(z);
-            plugin.getLogger().log(Level.INFO, Globals.prefixv + "Trying to remove holo");
             if(Config.getHoloConfig().getString(cfg) != null){
                 int eni = Integer.parseInt(Config.getHoloConfig().getString(cfg));
                 Chunk c = block.getChunk();
                 for(Entity entity: c.getEntities()){
                     if(entity.getEntityId() == eni){
                         entity.remove();
-                        plugin.getLogger().log(Level.INFO, Globals.prefixv + "Sucessfully removed holo");
                         break;
                     }
                 }

@@ -60,7 +60,6 @@ public class BlockBreakListener implements Listener {
         Location loc = e.getBlock().getLocation();
         if(Config.getHoloConfig().getString(cfg) != null){
             int eni = Integer.parseInt(Config.getHoloConfig().getString(cfg));
-            plugin.getLogger().log(Level.INFO, "[PixySpawners] Hologram enid was found: " + eni + ".");
             Chunk c = e.getBlock().getChunk();
 
             boolean destroyed = false;
@@ -72,7 +71,6 @@ public class BlockBreakListener implements Listener {
                     if(!Config.saveHoloConfig()){
                         e.getPlayer().sendMessage(LangEn.error);
                     }
-                    plugin.getLogger().log(Level.INFO, "[PixySpawners] Hologram destroyed successfully.");
                     break;
                 }
             }

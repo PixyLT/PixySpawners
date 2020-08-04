@@ -60,7 +60,6 @@ public class RightClickListener implements Listener {
                                     if (entity.getEntityId() == eni) {
                                         entity.remove();
                                         destroyed = true;
-                                        plugin.getLogger().log(Level.INFO, "[PixySpawners] Hologram destroyed successfully.");
                                         break;
                                     }
                                 }
