@@ -14,6 +14,7 @@ import org.bukkit.inventory.meta.BlockStateMeta;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class InventoryClickListener implements Listener {
     @EventHandler
@@ -32,14 +33,18 @@ public class InventoryClickListener implements Listener {
             List<EntityType> allowedTypes = new ArrayList();
             allowedTypes.addAll(Arrays.asList(allowedTypesArray));
 
-            if(e.getSlot() == 53){
-                p.closeInventory();
-                SpawnersGUI.gui2((CommandSender)p);
-            } else if(e.getSlot() == 45){
-                en = en;
-            } else {
-                et = allowedTypes.get(e.getSlot());
-                en = et.name();
+            try {
+                if(e.getSlot() == 53){
+                    p.closeInventory();
+                    SpawnersGUI.gui2((CommandSender)p);
+                } else if(e.getSlot() == 45){
+                    en = en;
+                } else if(e.getClickedInventory().getItem(e.getSlot()).getItemMeta().getDisplayName().contains("Spawner")){
+                    et = allowedTypes.get(e.getSlot());
+                    en = et.name();
+                }
+            } catch(Exception ex){
+                en = "--";
             }
             if(en != "--"){
                 String sn = et.name().toLowerCase().replace("_", " ");
@@ -70,14 +75,18 @@ public class InventoryClickListener implements Listener {
             List<EntityType> allowedTypes = new ArrayList();
             allowedTypes.addAll(Arrays.asList(allowedTypesArray));
 
-            if(e.getSlot() == 53){
-                en = en;
-            } else if(e.getSlot() == 45){
-                p.closeInventory();
-                SpawnersGUI.gui1((CommandSender)p);
-            } else {
-                et = allowedTypes.get(e.getSlot());
-                en = et.name();
+            try{
+                if(e.getSlot() == 53){
+                    en = en;
+                } else if(e.getSlot() == 45){
+                    p.closeInventory();
+                    SpawnersGUI.gui1((CommandSender)p);
+                } else if(e.getClickedInventory().getItem(e.getSlot()).getItemMeta().getDisplayName().contains("Spawner")){
+                    et = allowedTypes.get(e.getSlot());
+                    en = et.name();
+                }
+            } catch (Exception ex){
+                en = "--";
             }
             if(en != "--"){
                 String sn = et.name().toLowerCase().replace("_", " ");
