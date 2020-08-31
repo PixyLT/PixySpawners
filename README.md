@@ -11,4 +11,4 @@
 
 ## Compatibility
 Currently tested with:
-`✅ Spigot 1.16`
+`✅ Spigot 1.16.2`
