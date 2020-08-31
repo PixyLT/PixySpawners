@@ -8,6 +8,13 @@ public class LangEn {
         return JavaPlugin.getPlugin(PixySpawners.class);
     }
 
+    public static String versionSupported(String version){
+        return Globals.prefixv + version + " is supported!";
+    }
+    public static String versionNotSupported(String version){
+        return Globals.prefixv + version + " is not supported!";
+    }
+
     public static String help = Globals.prefix + "Help: \n"+
             ChatColor.LIGHT_PURPLE + "/pixyspawners " + ChatColor.GRAY + "-" + ChatColor.BLUE + " help command.\n" +
             ChatColor.LIGHT_PURPLE + "/pixyspawners about " + ChatColor.GRAY + "-" + ChatColor.BLUE + " about plugin.\n" +
@@ -51,7 +58,7 @@ public class LangEn {
         }
     }
     public static String spawnersDoesntMatch = Globals.prefix + "Spawners doesn't match!";
-    public static String error = Globals.prefix + "Error.";
+    public static String error = Globals.prefix + "Error occured.";
     public static String stackSuccess = Globals.prefix + "Spawner was stacked successfully!";
     public static String silktouchRequired = Globals.prefix + "You need silk touch to remove spawners!";
     public static String getSpawnersRemoved(int amount, String spawnerType){

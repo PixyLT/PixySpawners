@@ -2,12 +2,23 @@ package com.pixylt.pixyspawners;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Objects;
+
 public class PixySpawners extends JavaPlugin {
     @Override
     public void onEnable(){
+        if(VersionChecker.Check(Bukkit.getVersion())){
+            Bukkit.getConsoleSender().sendMessage(LangEn.versionSupported(Bukkit.getVersion()));
+        } else {
+            Bukkit.getConsoleSender().sendMessage(LangEn.versionNotSupported(Bukkit.getVersion()));
+        }
         Config.saveDefaultConfig();
-        this.getCommand("pixyspawners").setExecutor(new PixySpawnersCommand());
-        this.getCommand("spawners").setExecutor(new SpawnersCommand());
+        try {
+            Objects.requireNonNull(this.getCommand("pixyspawners")).setExecutor(new PixySpawnersCommand());
+            Objects.requireNonNull(this.getCommand("spawners")).setExecutor(new SpawnersCommand());
+        } catch(Exception ex){
+            Bukkit.getConsoleSender().sendMessage(LangEn.error);
+        }
         getServer().getPluginManager().registerEvents(new RightClickListener(this), this);
         getServer().getPluginManager().registerEvents(new EntityExplodeListener(this), this);
         getServer().getPluginManager().registerEvents(new BlockBreakListener(this), this);
