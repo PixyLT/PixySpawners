@@ -1,4 +1,4 @@
-package org.bstats.bukkit;
+package com.pixylt.pixyspawners;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
