@@ -81,9 +81,9 @@ public class LangEn {
     }
     public static String getSpawnerGiveReceiver(String sender, int amount, String spawnerType){
         if(amount == 1){
-            return Globals.prefix + ChatColor.LIGHT_PURPLE + sender + ChatColor.BLUE + " given you " + ChatColor.LIGHT_PURPLE + amount + " " + spawnerType + ChatColor.BLUE + " spawner.";
+            return Globals.prefix + ChatColor.LIGHT_PURPLE + sender + ChatColor.BLUE + " gave you " + ChatColor.LIGHT_PURPLE + amount + " " + spawnerType + ChatColor.BLUE + " spawner.";
         } else {
-            return Globals.prefix + ChatColor.LIGHT_PURPLE + sender + ChatColor.BLUE + " given you " + ChatColor.LIGHT_PURPLE + amount + " " + spawnerType + ChatColor.BLUE + " spawner.";
+            return Globals.prefix + ChatColor.LIGHT_PURPLE + sender + ChatColor.BLUE + " gave you " + ChatColor.LIGHT_PURPLE + amount + " " + spawnerType + ChatColor.BLUE + " spawners.";
         }
     }
     public static String playerNotFound = Globals.prefix + "Player was not found.";
