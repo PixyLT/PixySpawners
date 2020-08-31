@@ -1,4 +1,5 @@
 package com.pixylt.pixyspawners;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,6 +14,7 @@ public class PixySpawners extends JavaPlugin {
             Bukkit.getConsoleSender().sendMessage(LangEn.versionNotSupported(Bukkit.getVersion()));
         }
         Config.saveDefaultConfig();
+        Metrics metrics = new Metrics(this, 8725);
         try {
             Objects.requireNonNull(this.getCommand("pixyspawners")).setExecutor(new PixySpawnersCommand());
             Objects.requireNonNull(this.getCommand("spawners")).setExecutor(new SpawnersCommand());
