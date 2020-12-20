@@ -3,6 +3,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
+import java.util.logging.Logger;
 
 public class PixySpawners extends JavaPlugin {
     @Override
@@ -12,6 +13,14 @@ public class PixySpawners extends JavaPlugin {
         } else {
             Bukkit.getConsoleSender().sendMessage(LangEn.versionNotSupported(Bukkit.getVersion()));
         }
+        Logger logger = this.getLogger();
+        new UpdateChecker(this, 75396).getVersion(version -> {
+            if(this.getDescription().getVersion().equalsIgnoreCase(version)) {
+                Bukkit.getConsoleSender().sendMessage(LangEn.runningLatestVersion);
+            } else {
+                Bukkit.getConsoleSender().sendMessage(LangEn.runningOutdatedVersion);
+            }
+        });
         ConfigLegacy.saveDefaultConfig();
         Metrics metrics = new Metrics(this, 8725);
         try {

@@ -89,4 +89,6 @@ public class LangEn {
 //    ChatColor.of(hex);
     public static String playerInventoryFull = Globals.prefix + "Your inventory is full. Action cancelled.";
     public static String playerNotFound = Globals.prefix + "Player was not found.";
+    public static String runningLatestVersion = Globals.prefixv + "You are running latest version.";
+    public static String runningOutdatedVersion = Globals.prefixv + "There is a new update available.";
 }
