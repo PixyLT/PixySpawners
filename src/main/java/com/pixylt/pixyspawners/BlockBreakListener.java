@@ -38,13 +38,38 @@ public class BlockBreakListener implements Listener {
 
         e.setCancelled(true);
 
-        if(Config.getConfig().getString("require-silktouch") == "true") {
-            if(Config.getConfig().getString("can-remove-without-silktouch") == "false") {
+        if(ConfigLegacy.getConfig().getString("require-silktouch") == "true") {
+            if(ConfigLegacy.getConfig().getString("can-remove-without-silktouch") == "false") {
                 if(e.getPlayer().getInventory().getItemInMainHand() == null || !e.getPlayer().getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH)){
                     e.getPlayer().sendMessage(LangEn.silktouchRequired);
                     return;
                 }
             }
+        }
+        int count = 0;
+        for (ItemStack i : e.getPlayer().getInventory().getContents()) {
+            if (i == null) {
+                count++;
+            }
+        }
+        if (e.getPlayer().getInventory().getHelmet() == null) {
+            count--;
+        }
+        if (e.getPlayer().getInventory().getChestplate() == null) {
+            count--;
+        }
+        if (e.getPlayer().getInventory().getLeggings() == null) {
+            count--;
+        }
+        if (e.getPlayer().getInventory().getBoots() == null) {
+            count--;
+        }
+        if (e.getPlayer().getInventory().getItemInOffHand() != null) {
+            count--;
+        }
+        if(count == 0) {
+            e.getPlayer().sendMessage(LangEn.playerInventoryFull);
+            return;
         }
 
         Block block = e.getBlock();
@@ -58,8 +83,8 @@ public class BlockBreakListener implements Listener {
         int z = e.getBlock().getZ();
         String cfg = String.valueOf(x) + "-" + String.valueOf(y) + "-" + String.valueOf(z);
         Location loc = e.getBlock().getLocation();
-        if(Config.getHoloConfig().getString(cfg) != null){
-            int eni = Integer.parseInt(Config.getHoloConfig().getString(cfg));
+        if(ConfigLegacy.getHoloConfig().getString(cfg) != null){
+            int eni = Integer.parseInt(ConfigLegacy.getHoloConfig().getString(cfg));
             Chunk c = e.getBlock().getChunk();
 
             boolean destroyed = false;
@@ -67,8 +92,8 @@ public class BlockBreakListener implements Listener {
                 if(entity.getEntityId() == eni){
                     entity.remove();
                     destroyed = true;
-                    Config.getHoloConfig().set(cfg, null);
-                    if(!Config.saveHoloConfig()){
+                    ConfigLegacy.getHoloConfig().set(cfg, null);
+                    if(!ConfigLegacy.saveHoloConfig()){
                         e.getPlayer().sendMessage(LangEn.error);
                     }
                     break;
@@ -79,17 +104,21 @@ public class BlockBreakListener implements Listener {
             }
         }
 
-        if(Config.getSpawnerConfig() == null){
+        if(ConfigLegacy.getSpawnerConfig() == null){
             amount = 1;
             e.getPlayer().sendMessage(LangEn.getSpawnersRemoved(amount, type.name()));
         } else {
-            String a = Config.getSpawnerConfig().getString(cfg);
-            if(Config.getSpawnerConfig().getString(cfg) == null) {
+//            String a = ConfigLegacy.getSpawnerConfig().getString(cfg);
+//            if(ConfigLegacy.getSpawnerConfig().getString(cfg) == null) {
+            String a;
+            if(!Config.exists(cfg)){
                 a = "1";
+            } else {
+                a = Config.getCount(cfg);
             }
             amount = Integer.parseInt(a);
-            Config.getSpawnerConfig().set(cfg, null);
-            Config.saveSpawnerConfig();
+            ConfigLegacy.getSpawnerConfig().set(cfg, null);
+            ConfigLegacy.saveSpawnerConfig();
             e.getPlayer().sendMessage(LangEn.getSpawnersRemoved(amount, type.name()));
         }
         if(amount==0){
@@ -109,7 +138,7 @@ public class BlockBreakListener implements Listener {
         meta.setBlockState(spawner);
         meta.setDisplayName(LangEn.getSpawnerItemName(sn));
         i.setItemMeta(meta);
-        if(Config.getConfig().getString("require-silktouch") == "true" && Config.getConfig().getString("can-remove-without-silktouch") == "true"){
+        if(ConfigLegacy.getConfig().getString("require-silktouch") == "true" && ConfigLegacy.getConfig().getString("can-remove-without-silktouch") == "true"){
             if(e.getPlayer().getInventory().getItemInMainHand() == null || !e.getPlayer().getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH)){
                 return;
             }
