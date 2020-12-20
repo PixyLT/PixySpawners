@@ -1,5 +1,5 @@
 name: PixySpawners
-version: 0.9.0
+version: 0.9.1
 main: com.pixylt.pixyspawners.PixySpawners
 api-version: 1.16
 commands:
@@ -15,5 +15,23 @@ permissions:
     default: op
     children:
       pixyspawners.help: true
+      pixyspawners.get: true
+      pixyspawners.get.gui: true
+      pixyspawners.give: true
+      pixyspawners.reload: true
   pixyspawners.help:
+    default: true
+  pixyspawners.mine:
+    default: true
+  pixyspawners.get:
+    default: false
+  pixyspawners.get.gui:
+    default: false
+  pixyspawners.give:
+    default: false
+  pixyspawners.reload:
+    default: false
+  pixyspawners.check:
+    default: true
+  pixyspawners.stack:
     default: true
