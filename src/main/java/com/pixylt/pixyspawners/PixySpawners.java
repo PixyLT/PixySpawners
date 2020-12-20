@@ -12,7 +12,7 @@ public class PixySpawners extends JavaPlugin {
         } else {
             Bukkit.getConsoleSender().sendMessage(LangEn.versionNotSupported(Bukkit.getVersion()));
         }
-        Config.saveDefaultConfig();
+        ConfigLegacy.saveDefaultConfig();
         Metrics metrics = new Metrics(this, 8725);
         try {
             Objects.requireNonNull(this.getCommand("pixyspawners")).setExecutor(new PixySpawnersCommand());

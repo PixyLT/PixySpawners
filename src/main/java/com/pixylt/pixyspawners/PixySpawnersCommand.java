@@ -22,13 +22,13 @@ public class PixySpawnersCommand implements CommandExecutor {
                         case "RELOAD":
                             if(Permissions.reload(player)){
                                 player.sendMessage(LangEn.configReloaded);
-                                Config.reloadConfig();
+                                ConfigLegacy.reloadConfig();
                             } else {
                                 player.sendMessage(LangEn.missingPerm);
                             }
                             break;
                         case "CHECK":
-                            Config.check(player);
+                            ConfigLegacy.check(player);
                             break;
                         default:
                             player.sendMessage(LangEn.help);

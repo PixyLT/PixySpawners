@@ -52,8 +52,10 @@ public class RightClickListener implements Listener {
                             int z = e.getClickedBlock().getZ();
                             String cfg = String.valueOf(x) + "-" + String.valueOf(y) + "-" + String.valueOf(z);
 
-                            if (Config.getHoloConfig().getString(cfg) != null) {
-                                int eni = Integer.parseInt(Config.getHoloConfig().getString(cfg));
+//                            if (ConfigLegacy.getHoloConfig().getString(cfg) != null) {
+                            if (Config.exists(cfg)) {
+//                                int eni = Integer.parseInt(ConfigLegacy.getHoloConfig().getString(cfg));
+                                int eni = Integer.parseInt(Config.getHolo(cfg));
                                 Chunk c = e.getClickedBlock().getChunk();
                                 boolean destroyed = false;
                                 for (Entity entity : c.getEntities()) {
@@ -67,19 +69,25 @@ public class RightClickListener implements Listener {
                                     plugin.getLogger().log(Level.SEVERE, "[PixySpawners] Holo wasn't destryoed. Please report bug to plugin owner.");
                                 }
                             }
-
-                            if (Config.getSpawnerConfig().getString(cfg) == null) {
-                                Config.getSpawnerConfig().set(cfg, 2);
-                                if (Config.saveSpawnerConfig()) {
+//                            if (ConfigLegacy.getSpawnerConfig().getString(cfg) == null) {
+                            if (!Config.exists(cfg)) { // TODO didn't finish here yet.. :(
+                                ConfigLegacy.getSpawnerConfig().set(cfg, 2);
+                                if (ConfigLegacy.saveSpawnerConfig()) {
                                     e.getPlayer().sendMessage(LangEn.stackSuccess);
                                 } else {
                                     e.getPlayer().sendMessage(LangEn.error);
                                 }
                             } else {
-                                String a = Config.getSpawnerConfig().getString(cfg);
-                                amount = Integer.parseInt(a) + 1;
-                                Config.getSpawnerConfig().set(cfg, amount);
-                                if (Config.saveSpawnerConfig()) {
+//                                String a = ConfigLegacy.getSpawnerConfig().getString(cfg);
+                                String a = Config.getCount(cfg);
+                                try {
+                                    amount = Integer.parseInt(a) + 1;
+                                } catch(Exception ex){
+                                    e.getPlayer().sendMessage(LangEn.error);
+                                    amount = 2;
+                                }
+                                ConfigLegacy.getSpawnerConfig().set(cfg, amount);
+                                if (ConfigLegacy.saveSpawnerConfig()) {
                                     e.getPlayer().sendMessage(LangEn.stackSuccess);
                                 } else {
                                     e.getPlayer().sendMessage(LangEn.error);
@@ -112,10 +120,11 @@ public class RightClickListener implements Listener {
                             int enid = as.getEntityId();
                             String EnID = Integer.toString(enid);
 
-                            Config.getHoloConfig().set(cfg, EnID);
-                            if (!Config.saveHoloConfig()) {
+                            ConfigLegacy.getHoloConfig().set(cfg, EnID);
+                            if (!ConfigLegacy.saveHoloConfig()) {
                                 e.getPlayer().sendMessage(LangEn.error);
                             }
+                            Config.store(cfg, e.getPlayer().getName(), EnID, amount);
 
                             bs.update();
                         }
@@ -126,11 +135,16 @@ public class RightClickListener implements Listener {
                     int y = e.getClickedBlock().getY();
                     int z = e.getClickedBlock().getZ();
                     String cfg = String.valueOf(x) + "-" + String.valueOf(y) + "-" + String.valueOf(z);
-                    if(Config.getSpawnerConfig().getString(cfg) == null){
-                        amount = 1;
+//                    if(ConfigLegacy.getSpawnerConfig().getString(cfg) == null){
+//                        amount = 1;
+//                    } else {
+//                        String a = ConfigLegacy.getSpawnerConfig().getString(cfg);
+//                        amount = Integer.parseInt(a);
+//                    }
+                    if(Config.exists(cfg)){
+                        amount = Integer.parseInt(Config.getCount(cfg));
                     } else {
-                        String a = Config.getSpawnerConfig().getString(cfg);
-                        amount = Integer.parseInt(a);
+                        amount = 1;
                     }
                     EntityType type = ((CreatureSpawner) e.getClickedBlock().getState()).getSpawnedType();
                     e.getPlayer().sendMessage(LangEn.getRightClickSpawner(amount, type.name()));

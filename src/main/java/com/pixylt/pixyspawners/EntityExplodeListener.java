@@ -5,7 +5,6 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
 import org.bukkit.block.CreatureSpawner;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -29,9 +28,9 @@ public class EntityExplodeListener implements Listener {
     @EventHandler
     public void onEntityExplore(EntityExplodeEvent e){
         Block block = null;
-        if(Config.getConfig().getString("spawner-can-be-destroyed") == "true" && Config.getConfig().getString("spawner-drop-on-explosion") == "false"){
+        if(ConfigLegacy.getConfig().getString("spawner-can-be-destroyed") == "true" && ConfigLegacy.getConfig().getString("spawner-drop-on-explosion") == "false"){
             return;
-        } else if(Config.getConfig().getString("spawner-can-be-destroyed") == "false"){
+        } else if(ConfigLegacy.getConfig().getString("spawner-can-be-destroyed") == "false"){
             for(Block b : e.blockList().toArray(new Block[e.blockList().size()])){
                 if(b.getType() != t){
                     continue;
@@ -39,7 +38,7 @@ public class EntityExplodeListener implements Listener {
                 e.blockList().remove(b);
                 block = b;
             }
-        } else if(Config.getConfig().getString("spawner-can-be-destroyed") == "true" && Config.getConfig().getString("spawner-drop-on-explosion") == "true"){
+        } else if(ConfigLegacy.getConfig().getString("spawner-can-be-destroyed") == "true" && ConfigLegacy.getConfig().getString("spawner-drop-on-explosion") == "true"){
             Location loc = block.getLocation();
             World world = block.getWorld();
             EntityType type = ((CreatureSpawner) block.getState()).getSpawnedType();
@@ -48,8 +47,8 @@ public class EntityExplodeListener implements Listener {
             int y = block.getY();
             int z = block.getZ();
             String cfg = String.valueOf(x) + "-" + String.valueOf(y) + "-" + String.valueOf(z);
-            if(Config.getHoloConfig().getString(cfg) != null){
-                int eni = Integer.parseInt(Config.getHoloConfig().getString(cfg));
+            if(ConfigLegacy.getHoloConfig().getString(cfg) != null){
+                int eni = Integer.parseInt(ConfigLegacy.getHoloConfig().getString(cfg));
                 Chunk c = block.getChunk();
                 for(Entity entity: c.getEntities()){
                     if(entity.getEntityId() == eni){
@@ -59,13 +58,13 @@ public class EntityExplodeListener implements Listener {
                 }
             }
 
-            if(Config.getSpawnerConfig().getString(cfg) == null){
+            if(ConfigLegacy.getSpawnerConfig().getString(cfg) == null){
                 amount = 1;
             } else {
-                String a = Config.getSpawnerConfig().getString(cfg);
+                String a = ConfigLegacy.getSpawnerConfig().getString(cfg);
                 amount = Integer.parseInt(a);
-                Config.getSpawnerConfig().set(cfg, null);
-                Config.saveSpawnerConfig();
+                ConfigLegacy.getSpawnerConfig().set(cfg, null);
+                ConfigLegacy.saveSpawnerConfig();
             }
             if(amount==0){
                 amount = 1;

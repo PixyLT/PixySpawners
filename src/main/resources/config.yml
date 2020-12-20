@@ -1,4 +1,14 @@
+# Requires silktouch enchant to mine spawner
 require-silktouch: true
+# Won't allow mining spawner without silktouch
 can-remove-without-silktouch: false
+# Spawner will be destroyed on explosion
 spawner-can-be-destroyed: false
+# Spawner will drop on explosion
 spawner-drop-on-explosion: true
+# Max amount of spawners in one block
+max-spawners: 5
+# Show spawner owner without permission [Not working yet]
+show-spawner-owner: false
+# Only person who placed the spawner can stack/break spawner
+one-owner: false

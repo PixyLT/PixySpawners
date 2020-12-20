@@ -86,5 +86,7 @@ public class LangEn {
             return Globals.prefix + ChatColor.LIGHT_PURPLE + sender + ChatColor.BLUE + " gave you " + ChatColor.LIGHT_PURPLE + amount + " " + spawnerType + ChatColor.BLUE + " spawners.";
         }
     }
+//    ChatColor.of(hex);
+    public static String playerInventoryFull = Globals.prefix + "Your inventory is full. Action cancelled.";
     public static String playerNotFound = Globals.prefix + "Player was not found.";
 }
