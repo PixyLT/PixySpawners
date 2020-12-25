@@ -38,6 +38,13 @@ public class BlockBreakListener implements Listener {
 
         e.setCancelled(true);
 
+        if(GriefPrevention.check()){
+            if(!GriefPrevention.allowBreak(e.getPlayer(), e.getBlock(), e.getBlock().getLocation())) {
+                e.getPlayer().sendMessage(LangEn.notAllowedToBreak);
+                return;
+            }
+        }
+
         if(ConfigLegacy.getConfig().getString("require-silktouch") == "true") {
             if(ConfigLegacy.getConfig().getString("can-remove-without-silktouch") == "false") {
                 if(e.getPlayer().getInventory().getItemInMainHand() == null || !e.getPlayer().getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH)){

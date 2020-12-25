@@ -13,3 +13,4 @@
 Currently tested with:
 `✅ Spigot 1.16.2`
 `✅ Spigot 1.16.3`
+`✅ Spigot 1.16.4`

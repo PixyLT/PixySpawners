@@ -29,6 +29,11 @@ public class PixySpawners extends JavaPlugin {
         } catch(Exception ex){
             Bukkit.getConsoleSender().sendMessage(LangEn.error);
         }
+        if(GriefPrevention.check()){
+            Bukkit.getConsoleSender().sendMessage(LangEn.hookedIntoGriefPrevention);
+        } else {
+            Bukkit.getConsoleSender().sendMessage(LangEn.notHookedIntoGriefPrevention);
+        }
         getServer().getPluginManager().registerEvents(new RightClickListener(this), this);
         getServer().getPluginManager().registerEvents(new EntityExplodeListener(this), this);
         getServer().getPluginManager().registerEvents(new BlockBreakListener(this), this);

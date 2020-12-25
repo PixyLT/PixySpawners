@@ -91,4 +91,7 @@ public class LangEn {
     public static String playerNotFound = Globals.prefix + "Player was not found.";
     public static String runningLatestVersion = Globals.prefixv + "You are running latest version.";
     public static String runningOutdatedVersion = Globals.prefixv + "There is a new update available.";
+    public static String hookedIntoGriefPrevention = Globals.prefix + "Hooked into GriefPrevention.";
+    public static String notHookedIntoGriefPrevention = Globals.prefix + "GriefPrevention not found (This is not an error).";
+    public static String notAllowedToBreak = Globals.prefix + "You are not allowed to break the spawner.";
 }
