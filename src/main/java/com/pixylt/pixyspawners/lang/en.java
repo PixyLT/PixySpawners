@@ -109,8 +109,8 @@ public class en {
     public static String playerInventoryFull = prefix + "Your inventory is full. Action cancelled.";
     public static String spawnersDoesntMatch = prefix + "Spawners doesn't match!";
     public static String playerNotFound = prefix + "Player was not found.";
-    public static String runningLatestVersion = prefixv + "You are running latest version.";
-    public static String runningOutdatedVersion = prefixv + "There is a new update available.";
+    public static String runningLatestVersion = "You are running latest version.";
+    public static String runningOutdatedVersion = "There is a new update available.";
     public static String error = prefix + "Error occured.";
     public static String noConsole = prefix + "This command isn't allowed on console.";
     public static String missingPermission(String permission) {

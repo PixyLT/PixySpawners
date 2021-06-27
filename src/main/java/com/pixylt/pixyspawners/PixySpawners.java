@@ -12,6 +12,8 @@ import com.pixylt.pixyspawners.events.RightClickListener;
 import com.pixylt.pixyspawners.lang.en;
 import com.pixylt.pixyspawners.utils.Config;
 import com.pixylt.pixyspawners.utils.Console;
+import com.pixylt.pixyspawners.utils.Metrics;
+import com.pixylt.pixyspawners.utils.UpdateChecker;
 import com.pixylt.pixyspawners.utils.VersionChecker;
 
 import org.bukkit.Bukkit;
@@ -41,6 +43,15 @@ public class PixySpawners extends JavaPlugin {
         } else {
             console.warn(en.versionNotSupported(Bukkit.getVersion()));
         }
+
+        new UpdateChecker(this, 75396).getVersion(version -> {
+            if(this.getDescription().getVersion().equalsIgnoreCase(version)) {
+                console.log(en.runningLatestVersion);
+            } else {
+                console.warn(en.runningOutdatedVersion);
+            }
+        });
+        Metrics metrics = new Metrics(this, 8725);
 
         // Command registration
         try {
@@ -81,6 +92,9 @@ public class PixySpawners extends JavaPlugin {
             return;
         } else if(Bukkit.getPluginManager().isPluginEnabled("HolographicDisplays") && config.mainGetB("hologram-enabled")) {
             console.log("Hooked into HolographicDisplays");
+            metrics.addCustomChart(new Metrics.SimplePie("use_of_holographicdisplays", () -> "True"));
+        } else {
+            metrics.addCustomChart(new Metrics.SimplePie("use_of_holographicdisplays", () -> "False"));
         }
 
         console.log("Started!");
