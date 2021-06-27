@@ -1,8 +1,8 @@
 name: PixySpawners
-version: 0.9.2
+version: 1.0.1
 main: com.pixylt.pixyspawners.PixySpawners
 api-version: 1.16
-softdepend: [GriefPrevention]
+softdepend: [GriefPrevention, HolographicDisplays]
 commands:
   pixyspawners:
     description: Main PixySpawners command

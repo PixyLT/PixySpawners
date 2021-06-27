@@ -1,4 +1,4 @@
-package com.pixylt.pixyspawners;
+package com.pixylt.pixyspawners.utils;
 
 import org.bukkit.entity.Player;
 

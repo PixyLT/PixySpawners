@@ -1,16 +1,16 @@
-package com.pixylt.pixyspawners;
+package com.pixylt.pixyspawners.classes;
 
 public class Spawner {
     private String loc;
     private String owner;
-    private String holo;
     private String count;
+    private String type;
 
-    public Spawner(String loc, String owner, String holo, int count){
+    public Spawner(String loc, String owner, int count, String type){
         this.loc = loc;
         this.owner = owner;
-        this.holo = holo;
         this.count = String.valueOf(count);
+        this.type = type;
     }
 
     public String getOwner() {
@@ -19,7 +19,10 @@ public class Spawner {
     public String getCount() {
         return this.count;
     }
-    public String getHolo() {
-        return this.holo;
+    public String getLoc() {
+        return this.loc;
+    }
+    public String getType() {
+        return this.type;
     }
 }

@@ -8,7 +8,9 @@ spawner-can-be-destroyed: false
 spawner-drop-on-explosion: true
 # Max amount of spawners in one block
 max-spawners: 5
-# Show spawner owner without permission [Not working yet]
-show-spawner-owner: false
+# Show spawner owner on right-click
+show-spawner-owner: true
 # Only person who placed the spawner can stack/break spawner
 one-owner: false
+# Enable holograms [Requires HolographicDisplays Plugin]
+hologram-enabled: false
