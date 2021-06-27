@@ -85,7 +85,6 @@ public class Spawners implements TabExecutor {
             if(args.length != 0) {
                 switch (args[0].toUpperCase()) {
                     case "DEBUG":
-                        MobList.getStringList();
                         break;
                     case "GUI":
                         if(Permissions.getGUI(player)) {

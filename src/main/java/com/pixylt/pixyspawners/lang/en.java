@@ -9,6 +9,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import net.md_5.bungee.api.ChatColor;
 
 public class en {
@@ -133,7 +135,14 @@ public class en {
         }
     }
     public static Component getSpawnerItemName(String spawnerName){
-        final TextComponent textComponent = Component.text("" + ChatColor.BLUE + ChatColor.BOLD + spawnerName + ChatColor.BLUE + " Spawner");
+        final TextComponent textComponent = Component.text(spawnerName)
+            .color(NamedTextColor.BLUE)
+            .decoration(TextDecoration.BOLD, true)
+            .append(
+                Component.text(" Spawner")
+                    .color(NamedTextColor.BLUE)   
+            );
+        // Component.text("" + ChatColor.BLUE + ChatColor.BOLD + spawnerName + ChatColor.BLUE + " Spawner");
         return textComponent;
     }
     public static String getRightClickSpawner(int amount, String spawnerType, String owner, Boolean showOwner){
